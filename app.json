@@ -4,10 +4,10 @@
     "slug": "List",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/app/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/app/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -16,12 +16,31 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/app/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.gulali.List"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/app/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Regular.ttf",
+            "./assets/fonts/Medium.ttf",
+            "./assets/fonts/Bold.ttf",
+            "./assets/fonts/Black.ttf"
+          ]
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "c9f10945-a7e2-4176-94f3-a3cd658e0b3b"
+      }
     }
   }
 }
