@@ -4,6 +4,7 @@ import {
   View,
   ToastAndroid,
   Platform,
+  Share,
 } from "react-native";
 import Toast from "react-native-toast-message";
 import React, { useState, useEffect } from "react";
@@ -13,9 +14,11 @@ import Empty from "@/components/Empty";
 import Item from "@/components/Item";
 import TopBar from "@/components/TopBar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import MoreOptions from "@/components/MoreOptions";
 
 const Home = () => {
   const [list, setList] = useState([]);
+  const [isMoreActive, setIsMoreActive] = useState(false);
 
   useEffect(() => {
     loadList();
@@ -69,17 +72,54 @@ const Home = () => {
     const newList = [...list];
     newList.splice(id, 1);
     setList(newList);
-    saveList(newList)
+    saveList(newList);
+  };
+
+  const shareList = () => {
+    try {
+      const message = list
+        .map((item, index) => `${index + 1}. ${item}`)
+        .join("\n");
+
+      const result = Share.share({
+        message: `${"*List:* \n" + message}`,
+      });
+      if (result.Action === Share.sharedAction) {
+        if (result.activityType) {
+          console.log("Shared with activity of " + result.activityType);
+        } else {
+          console.log("Shared");
+        }
+      } else if (result.Action === Share.dismissedAction) {
+        console.log("Dismissed");
+      }
+    } catch (error) {
+      ToastAndroid.show("An Error Occured!", ToastAndroid.SHORT);
+      console.error(error);
+    }
+  };
+
+  const toggleMore = () => {
+    setIsMoreActive(!isMoreActive);
   };
 
   return (
     <View style={styles.container}>
+      <View style={styles.moreWrapper}>
+        <MoreOptions
+          isActive={isMoreActive}
+          toggleMore={toggleMore}
+          clearAll={clearAll}
+          shareList={shareList}
+          list= {list}
+        />
+      </View>
       <ScrollView
         contentContainerStyle={{
           flexGrow: 1,
         }}
       >
-        <TopBar total={list.length} clearAll={clearAll} />
+        <TopBar total={list.length} toggleMore={toggleMore} />
         {list.length > 0 ? (
           <View style={styles.list}>
             {list.map((item, index) => {
@@ -119,5 +159,8 @@ const styles = StyleSheet.create({
   },
   toastWrapper: {
     zIndex: 1,
+  },
+  moreWrapper: {
+    maxHeight: 500,
   },
 });

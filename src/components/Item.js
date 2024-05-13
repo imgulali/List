@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
     height: 24,
     backgroundColor: Colors.primary,
     borderRadius: 6,
+    opacity:0.9,
   },
   content: {
     flex: 1,
