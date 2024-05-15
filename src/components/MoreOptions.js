@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, ToastAndroid, View } from "react-native";
 import Modal from "react-native-modal";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Colors from "@/constants/Colors";
 
 const MoreOptions = ({ isActive, toggleMore, clearAll, shareList, list }) => {

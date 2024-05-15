@@ -2,7 +2,7 @@
   "expo": {
     "name": "List",
     "slug": "List",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/app/icon.png",
     "userInterfaceStyle": "light",
@@ -19,7 +19,8 @@
         "foregroundImage": "./assets/app/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.gulali.List"
+      "package": "com.gulali.List",
+      "permissions": ["ACCESS_NETWORK_STATE"]
     },
     "web": {
       "favicon": "./assets/app/favicon.png"

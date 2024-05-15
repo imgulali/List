@@ -15,8 +15,9 @@ import Item from "@/components/Item";
 import TopBar from "@/components/TopBar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import MoreOptions from "@/components/MoreOptions";
+import VersionUpdate from "@/components/VersionUpdate";
 
-const Home = () => {
+const Home = ({showUpdate}) => {
   const [list, setList] = useState([]);
   const [isMoreActive, setIsMoreActive] = useState(false);
 
@@ -105,7 +106,7 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.moreWrapper}>
+      <View>
         <MoreOptions
           isActive={isMoreActive}
           toggleMore={toggleMore}
@@ -113,6 +114,7 @@ const Home = () => {
           shareList={shareList}
           list= {list}
         />
+        <VersionUpdate showUpdate={showUpdate} />
       </View>
       <ScrollView
         contentContainerStyle={{
@@ -159,8 +161,5 @@ const styles = StyleSheet.create({
   },
   toastWrapper: {
     zIndex: 1,
-  },
-  moreWrapper: {
-    maxHeight: 500,
   },
 });
