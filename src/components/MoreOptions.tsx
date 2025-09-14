@@ -1,9 +1,13 @@
-import { Pressable, StyleSheet, Text, ToastAndroid, View } from "react-native";
+import { Pressable, StyleSheet, ToastAndroid, View } from "react-native";
 import Modal from "react-native-modal";
 import React from "react";
 import Colors from "@/constants/Colors";
+import { useItemsContext } from "@/contexts/ItemsContext";
+import { MoreOptionsProps } from "@/types";
+import Text from "@/components/Text";
 
-const MoreOptions = ({ isActive, toggleMore, clearAll, shareList, list }) => {
+const MoreOptions = ({ isActive, toggleMore, shareList }: MoreOptionsProps) => {
+  const { list, clearAll } = useItemsContext();
   const handleToggleMore = () => {
     toggleMore();
   };
@@ -12,6 +16,7 @@ const MoreOptions = ({ isActive, toggleMore, clearAll, shareList, list }) => {
     clearAll();
     toggleMore();
   };
+  
   const handleShareList = async () => {
     if (list.length > 0) {
       await shareList();
@@ -26,12 +31,11 @@ const MoreOptions = ({ isActive, toggleMore, clearAll, shareList, list }) => {
 
   return (
     <Modal
-      animationType="fade"
-      transparent={true}
       isVisible={isActive}
-      animationIn={"zoomIn"}
-      animationOut={"zoomOut"}
+      animationIn="zoomIn"
+      animationOut="zoomOut"
       animationOutTiming={220}
+      backdropOpacity={0.5}
     >
       <View style={styles.container}>
         <Pressable style={styles.optionWrapper} onLongPress={handleClearAll} onPress={clearShortPress}>
@@ -74,12 +78,12 @@ const styles = StyleSheet.create({
     borderColor: Colors.input,
   },
   optionText: {
-    fontFamily: "Medium",
+    fontWeight: "medium",
     fontSize: 18,
     textAlign: "center",
   },
   closeText: {
-    fontFamily: "Black",
+    fontWeight: "bold",
     color: Colors.primary,
   },
   creditWrapper: {
@@ -87,7 +91,6 @@ const styles = StyleSheet.create({
     height: 50,
   },
   creditText: {
-    fontFamily: "Regular",
     fontSize: 14,
     color: Colors.gray,
   },

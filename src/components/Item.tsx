@@ -1,10 +1,23 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import React from "react";
+import { View, StyleSheet, Pressable } from "react-native";
+import * as Haptics from "expo-haptics";
 import Colors from "@/constants/Colors";
+import { useItemsContext } from "@/contexts/ItemsContext";
+import { ItemProps } from "@/types";
+import Text from "@/components/Text";
 
-const Item = ({ text, id, deleteItem }) => {
+const Item = ({ text, id, onEdit }: ItemProps) => {
+  const { deleteItem } = useItemsContext();
+
   const deleteItemHandler = () => {
     deleteItem(id);
+  };
+
+  const editItemHandler = () => {
+    if (onEdit) {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+      onEdit(text, id);
+    }
   };
 
   return (
@@ -13,6 +26,7 @@ const Item = ({ text, id, deleteItem }) => {
         pressed ? styles.pressedContainer : styles.container
       }
       onPress={deleteItemHandler}
+      onLongPress={editItemHandler}
     >
       <View style={styles.shape}></View>
       <View style={styles.content}>
@@ -58,7 +72,7 @@ const styles = StyleSheet.create({
     height: 24,
     backgroundColor: Colors.primary,
     borderRadius: 6,
-    opacity:0.9,
+    opacity: 0.9,
   },
   content: {
     flex: 1,
@@ -68,7 +82,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 19,
-    fontFamily: "Medium",
+    fontWeight: "medium",
     maxWidth: "100%",
   },
 });

@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 import React from "react";
 import Colors from "@/constants/Colors";
+import Text from "@/components/Text";
 
 const Empty = () => {
   return (
@@ -8,7 +9,7 @@ const Empty = () => {
       <Image source={require("@/assets/images/peep.png")} style={styles.image} />
       <View style={styles.textWrapper}>
         <Text style={styles.heading}>Your List is Empty!</Text>
-        <Text style={styles.secondary}>You don't have anything in your list. Try adding something.</Text>
+        <Text style={styles.secondary}>Try adding something...</Text>
       </View>
     </View>
   );
@@ -32,12 +33,11 @@ const styles = StyleSheet.create({
     marginVertical: 24,
   },
   heading:{
-    fontFamily: 'Black',
+    fontWeight: 'bold',
     textAlign: 'center',
     fontSize: 30,
   },
   secondary: {
-    fontFamily: 'Regular',
     textAlign: 'center',
     fontSize: 17,
     color: Colors.gray,

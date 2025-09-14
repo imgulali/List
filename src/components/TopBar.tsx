@@ -1,15 +1,17 @@
-import { Pressable, StyleSheet, Text, View, Image } from "react-native";
+import { Pressable, StyleSheet, View, Image } from "react-native";
 import React from "react";
 import Colors from "@/constants/Colors";
+import { TopBarProps } from "@/types";
+import Text from "@/components/Text";
 
-const TopBar = ({ total, toggleMore }) => {
+const TopBar = ({ total, toggleMore }: TopBarProps) => {
   const moreHandler = () => {
     toggleMore();
   };
 
   return (
     <View style={styles.container}>
-      <View style={styles.left}>
+      <View>
         <Text style={styles.heading}>Your List</Text>
         <Text style={styles.secondary}>{total} things in total</Text>
       </View>
@@ -37,11 +39,11 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontSize: 34,
-    fontFamily: "Black",
+    fontWeight: "bold",
   },
   secondary: {
     fontSize: 18,
-    fontFamily: "Medium",
+    fontWeight: "medium",
     color: Colors.gray,
   },
   moreWrapper: {

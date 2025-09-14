@@ -2,46 +2,38 @@
   "expo": {
     "name": "List",
     "slug": "List",
-    "version": "1.0.2",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/app/icon.png",
     "userInterfaceStyle": "light",
+    "newArchEnabled": true,
     "splash": {
-      "image": "./assets/app/splash.png",
+      "image": "./assets/aap/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/app/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.gulali.List",
-      "permissions": ["ACCESS_NETWORK_STATE"]
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false
     },
     "web": {
       "favicon": "./assets/app/favicon.png"
     },
     "plugins": [
-      [
-        "expo-font",
-        {
-          "fonts": [
-            "./assets/fonts/Regular.ttf",
-            "./assets/fonts/Medium.ttf",
-            "./assets/fonts/Bold.ttf",
-            "./assets/fonts/Black.ttf"
-          ]
-        }
-      ]
+      "expo-font"
     ],
     "extra": {
       "eas": {
         "projectId": "c9f10945-a7e2-4176-94f3-a3cd658e0b3b"
       }
-    }
+    },
+    "owner": "gulali"
   }
 }
